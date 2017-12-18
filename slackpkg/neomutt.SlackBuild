@@ -7,12 +7,12 @@ if [ "$TMP" = "" ]; then
 fi
 
 # The version which appears in the application's filename
-VERSION=20170912
+VERSION=20171215
 
 # If the version conflicts with the Slackware package standard
 # The dash character ("-") is not allowed in the VERSION string
 # You can set the PKG_VERSION to something else than VERSION
-PKG_VERSION=20170912 # the version which appears in the package name. 
+PKG_VERSION=20171215 # the version which appears in the package name. 
 
 ARCH=${ARCH:-x86_64} # the architecture on which you want to build your package 
 
@@ -54,15 +54,14 @@ cd $APP-$APP-$VERSION || exit 1
 chown -R root:root .
 chmod -R u+w,go+r-w,a-s .
 
-/usr/bin/autoreconf -i || exit
+#/usr/bin/autoreconf -i || exit
+
 
 CFLAGS="$SLKCFLAGS" \
 ./configure \
 --prefix=/usr \
---with-ssl \
---with-sasl \
---enable-smtp \
---enable-sidebar \
+--ssl \
+--sasl \
 --sysconfdir=/etc \
 --localstatedir=/var \
 --build=$ARCH-slackware-linux \
